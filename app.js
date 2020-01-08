@@ -9,7 +9,7 @@ const app = express()
 //
 
 // Post-it collection
-let postits = []
+let collection = []
 // Counter for assigning new ID to new post-its
 let idcounter = 10000000
 
@@ -28,16 +28,14 @@ app.use(express.urlencoded())
 // Routes
 //
 
-const list = [{content:"lol", _id:7}, {content:"bar", _id:0}]
-
 app.get('/', (req,res) => {
-    res.render("index", {postits:list})
+    res.render("index", {notes: collection})
 })
 
 app.post('/add', (req,res) => {
     idcounter = idcounter + 1
 
-    postits.push({
+    collection.push({
         content:req.body.content, 
         _id:idcounter
     })
@@ -46,7 +44,7 @@ app.post('/add', (req,res) => {
 
 app.post('/delete/:id', (req,res) => {
     const id = req.params.id
-    postits = postits.filter(postit => postit._id != id)
+    collection = collection.filter(postit => postit._id != id)
     res.redirect('/')
 })
 

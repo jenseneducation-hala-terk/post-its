@@ -16,10 +16,10 @@
             </form>
         </header>
         <main>
-            <% for(let postit of postits){ %>
+            <% for(let note of notes){ %>
                 <article class="post-it">
-                    <p><%= postit.content %></p>
-                    <form action="/delete/<%=postit._id%>" method="POST">
+                    <p><%= note.content %></p>
+                    <form action="/delete/<%=note._id%>" method="POST">
                         <input type="submit" value="Delete">
                     </form>
                 </article>
