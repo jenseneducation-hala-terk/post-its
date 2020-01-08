@@ -1,0 +1,31 @@
+body{
+    background-color: hotpink;
+}
+
+.wrapper{
+    margin: auto;
+    display: grid;
+    grid-template-rows: 5rem auto;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.post-it{
+    box-shadow: 0px 10px 18px -9px rgba(0,0,0,0.75);
+    border: 3px solid rgba(0,0,0,0.05);
+    background-color: peachpuff;
+
+    margin: 1rem;
+}
+.post-it p {
+    padding: 1rem;
+    min-width: 250px;
+}
