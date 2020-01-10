@@ -18,14 +18,20 @@
         <main>
             <% for(let note of notes){ %>
                 <article class="post-it">
-                    <p><%= note.content %></p>
+                    <p class="content"><%= note.content %></p>
+                    <form class="edit-form hidden" action="/edit/<%=note._id%>" method="POST">
+                        <textarea name="content" cols="30" rows="10"><%=note.content%></textarea>
+                        <input type="submit" value="Update">
+                    </form>
                     <form action="/delete/<%=note._id%>" method="POST">
                         <input type="submit" value="Delete">
                     </form>
+                    <button class="edit-btn">Edit</button>
                 </article>
             <% } %>
 
         </main>
     </div>
+    <script src="/public/js/main.js"></script>
 </body>
 </html>

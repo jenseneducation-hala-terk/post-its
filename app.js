@@ -1,5 +1,6 @@
 // Libraries
 const express = require('express')
+const uuid = require('uuid')
 
 // App Instance
 const app = express()
@@ -10,15 +11,13 @@ const app = express()
 
 // Post-it collection
 let collection = []
-// Counter for assigning new ID to new post-its
-let idcounter = 10000000
 
 //
 // Express Configuration
 //
 
 // Templating Engine
-app.set("view engine","ejs")
+app.set("view engine", "ejs")
 // Enable Express to serve static files from /public
 app.use('/public', express.static('public'))
 // Enable Express to read form data
@@ -33,11 +32,9 @@ app.get('/', (req,res) => {
 })
 
 app.post('/add', (req,res) => {
-    idcounter = idcounter + 1
-
     collection.push({
         content:req.body.content, 
-        _id:idcounter
+        _id: uuid()
     })
     res.redirect('/')
 })
@@ -48,7 +45,14 @@ app.post('/delete/:id', (req,res) => {
     res.redirect('/')
 })
 
-app.listen(5000, () => console.log("We rollin"))
+app.post('/edit/:id', (req,res) => {
+    const id = req.params.id
+    const note = collection.find(note => note._id == id)
+    note.content = req.body.content
+    res.redirect('/')
+})
+
+app.listen(8080, () => console.log("We rollin"))
 
 
 

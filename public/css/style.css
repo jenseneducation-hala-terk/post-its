@@ -29,3 +29,7 @@ main{
     padding: 1rem;
     min-width: 250px;
 }
+
+.hidden{
+    display: none;
+}
